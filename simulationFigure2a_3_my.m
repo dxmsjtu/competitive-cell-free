@@ -34,12 +34,9 @@ SE_AP_MMSE_tot = zeros(K,4,nbrOfSetups);
 %% Go through all setups
 for n = 1:nbrOfSetups    
     %Display simulation progress
-    disp(['Setup ' num2str(n) ' out of ' num2str(nbrOfSetups)]);
-    
+    disp(['Setup ' num2str(n) ' out of ' num2str(nbrOfSetups)]);    
     %Generate one setup with UEs at random locations
-    [R_AP,R_BS,pilotIndex,BSassignment] = generateSetup(L,K,N,M,1);
-
-    
+    [R_AP,R_BS,pilotIndex,BSassignment] = generateSetup(L,K,N,M,1);    
     %Generate channel realizations, channel estimates, and estimation
     %error correlation matrices for all UEs to the cell-free APs
     [Hhat_AP,H_AP,B_AP] = functionChannelEstimates(R_AP,nbrOfRealizations,L,K,N,tau_p,pilotIndex,p);

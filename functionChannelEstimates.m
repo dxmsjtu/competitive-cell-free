@@ -1,26 +1,15 @@
 function [Hhat,H,B] = functionChannelEstimates(R,nbrOfRealizations,L,K,N,tau_p,pilotIndex,p)
-%Generate the channel realizations and estimates of these channels for all
-%UEs in the entire network. The channels are modeled as correlated
-%Rayleigh fading and the MMSE estimator is used.
-%
+%Generate the channel realizations and estimates of these channels for all UEs in the entire network. 
+%The channels are modeled as correlated Rayleigh fading and the MMSE estimator is used.
 %This function was developed as a part of the paper:
 %
-%Emil Bjornson, Luca Sanguinetti, "Making Cell-Free Massive MIMO
-%Competitive With MMSE Processing and Centralized Implementation,"
+%Emil Bjornson, Luca Sanguinetti, "Making Cell-Free Massive MIMO Competitive With MMSE Processing and Centralized Implementation,"
 %IEEE Transactions on Wireless Communications, To appear.
-%
 %Download article: https://arxiv.org/abs/1903.10611
-%
-%This is version 1.0 (Last edited: 2019-03-19)
-%
-%License: This code is licensed under the GPLv2 license. If you in any way
-%use this code for research that results in publications, please cite our
-%paper as described above.
-%
-%INPUT:
-%R                 = Matrix with dimension N x N x L x K where (:,:,l,k) is
-%                    the spatial correlation matrix between AP l and UE k 
-%                    in setup n, normalized by the noise power
+%% INPUT:
+%R                 = Matrix with dimension N x N x L x K where (:,:,l,k) is the spatial correlation matrix 
+%                    between AP l and UE k  in setup n, normalized by the noise power
+%                   
 %nbrOfRealizations = Number of channel realizations
 %L                 = Number of APs
 %K                 = Number of UEs in the network
@@ -28,10 +17,9 @@ function [Hhat,H,B] = functionChannelEstimates(R,nbrOfRealizations,L,K,N,tau_p,p
 %tau_p             = Number of orthogonal pilots
 %pilotIndex        = Vector containing the pilot assigned to each UE
 %p                 = Uplink transmit power per UE (same for everyone)
-%
-%OUTPUT:
-%Hhat         = Matrix with dimension L*N x nbrOfRealizations x K where
-%               (:,n,k) is the estimated collective channel to UE k at
+%% OUTPUT:
+%Hhat         = Matrix with dimension L*N x nbrOfRealizations x K where (:,n,k) is the estimated 
+%               collective channel to UE k at
 %               channel realization n.
 %H            = Matrix with dimension L*N x nbrOfRealizations x K with the
 %               true channel realizations. The matrix is organized in the
